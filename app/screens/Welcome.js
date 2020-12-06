@@ -1,18 +1,27 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Image, View, Switch} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Image,
+  View,
+  Switch,
+  StatusBar,
+} from 'react-native';
 import {Title, Caption, TextInput, Subheading} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 import {appAction} from '../redux/actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import Button from '../components/Button';
+import {useTheme} from '@react-navigation/native';
 
 const Welcome = ({navigation: {navigate}}) => {
   const dispatch = useDispatch();
+  const {colors} = useTheme();
 
   const [showError, setShowError] = useState(false);
-  const [name, setName] = useState('');
+  const [name, setName] = useState('tobi');
 
-  const {darkMode, userName} = useSelector(({app}) => app);
+  const {darkMode} = useSelector(({app}) => app);
 
   const toggleSwitch = () => {
     console.log(darkMode);
@@ -22,16 +31,20 @@ const Welcome = ({navigation: {navigate}}) => {
   };
 
   const handleContinue = () => {
-      if(name) {
-        dispatch(appAction.setUserName(name));
-        navigate('Chat')
-      } else {
-          setShowError(true)
-      }
+    if (name) {
+      dispatch(appAction.setUserName(name));
+      navigate('Chats');;
+    } else {
+      setShowError(true);
+    }
   };
 
   return (
     <ScrollView>
+      <StatusBar
+        barStyle={darkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={colors.background}
+      />
       <View style={styles.darkMode}>
         <Subheading>Dark Mode</Subheading>
         <Switch

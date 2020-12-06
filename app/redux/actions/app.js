@@ -1,4 +1,4 @@
-import {DARK_MODE, USER_NAME} from '../types';
+import {CHAT_MESSAGES, DARK_MODE, USER_NAME} from '../types';
 
 const setDarkMode = (payload) => ({
   type: DARK_MODE,
@@ -8,8 +8,15 @@ const setUserName = (payload) => ({
   type: USER_NAME,
   payload,
 });
+const setChatMessages = (payload) => ({
+  type: CHAT_MESSAGES,
+  payload,
+});
+
+
 
 export default {
   setDarkMode,
-  setUserName
+  setUserName,
+  setChatMessages,
 };

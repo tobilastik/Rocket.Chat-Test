@@ -29,8 +29,8 @@ const StartUp = ({navigation}) => {
       ...PaperDefaultTheme.colors,
       background: 'whitesmoke',
       text: 'black',
-      primary: '#0aacee',
-      secondary: '#cc5c11',
+      primary: '#F4445C',
+      secondary: '#5C5E63',
     },
   };
 
@@ -41,9 +41,9 @@ const StartUp = ({navigation}) => {
       ...NavigationDarkTheme.colors,
       ...PaperDarkTheme.colors,
       background: '#121212',
-      text: "white",
-      primary: '#0aacee',
-      secondary: '#cc5c11',
+      text: 'white',
+      primary: '#F4445C',
+      secondary: '#262D31',
     },
   };
 
