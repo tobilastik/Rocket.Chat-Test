@@ -18,7 +18,7 @@ const Welcome = ({navigation}) => {
   const dispatch = useDispatch();
   const {colors} = useTheme();
   const [showError, setShowError] = useState(false);
-  const [name, setName] = useState('');
+  const [name, setName] = useState('tobi');
 
   const {darkMode} = useSelector(({app}) => app);
   const animation = new Animated.Value(0);

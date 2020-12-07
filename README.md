@@ -8,9 +8,9 @@ React-Navigation
 
 React-native-paper
 
-React-native-sound
-
 React-native-vector-icons
+
+Redux (and its associated libraries)
 
 <b>Main Features done</b>
 
