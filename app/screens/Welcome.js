@@ -11,7 +11,6 @@ import {
 import {Title, Caption, TextInput, Subheading} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 import {appAction} from '../redux/actions';
-import AsyncStorage from '@react-native-community/async-storage';
 import Button from '../components/Button';
 import {useTheme} from '@react-navigation/native';
 
@@ -46,37 +45,12 @@ const Welcome = ({navigation: {navigate}}) => {
     }
   };
 
-  const toggleSwitch = () => {
-    console.log(darkMode);
-    dispatch(appAction.setDarkMode(!darkMode));
-    AsyncStorage.setItem('darkMode', JSON.stringify(darkMode));
-    console.log(darkMode);
-  };
-
-  const handleContinue = () => {
-    if (name) {
-      dispatch(appAction.setUserName(name));
-      navigate('Chats');
-    } else {
-      setShowError(true);
-    }
-  };
-
   return (
     <ScrollView>
       <StatusBar
         barStyle={darkMode ? 'light-content' : 'dark-content'}
         backgroundColor={colors.background}
       />
-      <View style={styles.darkMode}>
-        <Subheading>Dark Mode</Subheading>
-        <Switch
-          trackColor={{false: '#767577', true: 'white'}}
-          thumbColor={darkMode ? 'red' : '#121212'}
-          onValueChange={toggleSwitch}
-          value={darkMode}
-        />
-      </View>
 
       <View style={styles.container}>
         <Image
