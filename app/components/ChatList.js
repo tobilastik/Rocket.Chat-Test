@@ -3,7 +3,7 @@ import {TouchableOpacity, View, Image, StyleSheet} from 'react-native';
 import {Subheading, Caption} from 'react-native-paper';
 import {screenWidth} from '../common/utils';
 
-const ChatList = ({fullName, message, avatar, id, navigation}) => (
+const ChatList = ({fullName, message, avatar, id, navigate}) => (
   <View>
     <View style={styles.messageContainer}>
       <TouchableOpacity>
@@ -12,9 +12,9 @@ const ChatList = ({fullName, message, avatar, id, navigation}) => (
 
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('Messages', {
+          navigate('Messages', {
             id: id,
-            avatar: avatar,
+            fullName: fullName,
           })
         }
         style={styles.messagesStyle}>

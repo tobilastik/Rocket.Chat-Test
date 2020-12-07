@@ -1,9 +1,18 @@
 import {useTheme} from '@react-navigation/native';
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {
+  Animated,
+  Easing,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {Subheading, Caption} from 'react-native-paper';
 import {screenWidth} from '../common/utils';
 import moment from 'moment';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MessageView from './MessageView';
 
 const ChatMessages = ({id, timeStamp, message}) => {
   const {colors} = useTheme();
@@ -27,7 +36,7 @@ const ChatMessages = ({id, timeStamp, message}) => {
                 ...styles.receiverView,
                 backgroundColor: colors.secondary,
               }}>
-              <Subheading style={{color: 'white'}}>{message}</Subheading>
+              <Subheading style={styles.messageText}>{message}</Subheading>
               <Caption style={styles.timeStamp}>{filter(timeStamp)}</Caption>
             </View>
           )}
@@ -35,11 +44,24 @@ const ChatMessages = ({id, timeStamp, message}) => {
       ) : (
         <View>
           {message && (
-            <View
-              style={{...styles.senderView, backgroundColor: colors.primary}}>
+            <MessageView
+              rootStyle={{
+                ...styles.senderView,
+                backgroundColor: colors.primary,
+              }}>
+              <TouchableWithoutFeedback>
+                <Animated.View>
+                  <MaterialIcons
+                    name="keyboard-arrow-down"
+                    size={20}
+                    color="white"
+                    style={styles.icon}
+                  />
+                </Animated.View>
+              </TouchableWithoutFeedback>
               <Subheading style={{color: 'white'}}>{message}</Subheading>
               <Caption style={styles.timeStamp}>{filter(timeStamp)}</Caption>
-            </View>
+            </MessageView>
           )}
         </View>
       )}
@@ -72,5 +94,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 4,
     bottom: 1,
+  },
+  icon: {
+    alignSelf: 'flex-end',
+    marginTop: -4,
+  },
+  messageText: {
+    color: 'white',
+    marginBottom: 12,
   },
 });

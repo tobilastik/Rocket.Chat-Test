@@ -5,7 +5,7 @@ import BackButton from './BackButton';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useTheme} from '@react-navigation/native';
 
-const Header = ({goBack, handleclear}) => {
+const Header = ({goBack, handleclear, fullName}) => {
   const {colors} = useTheme();
 
   return (
@@ -13,7 +13,7 @@ const Header = ({goBack, handleclear}) => {
       <View style={styles.rootStyle}>
         <BackButton goBack={goBack} />
         <View style={{marginLeft: 12}}>
-          <Title style={styles.chatName}>Admin</Title>
+          <Title style={styles.chatName}>{fullName}</Title>
           <Caption>Hi there! I'm using Rocket.Chat!</Caption>
         </View>
         <View style={styles.iconsView}>

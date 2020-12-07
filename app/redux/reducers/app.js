@@ -7,7 +7,6 @@ const initialstate = {
     {
       id: null,
       message: null,
-
       timeStamp: Date.now(),
     },
   ],

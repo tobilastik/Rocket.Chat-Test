@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import {FlatList, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import Header from '../components/Header';
+import Header from '../components/ChatHeader';
 import Footer from '../components/Footer';
 import {appAction} from '../redux/actions';
 import ChatMessages from '../components/ChatMessages';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useEffect} from 'react';
 
-const Chat = ({navigation: {goBack, navigate}}) => {
+const Chat = ({navigation: {goBack, navigate}, route}) => {
   const dispatch = useDispatch();
-  const {userName, chatMessages} = useSelector(({app}) => app);
+  const {userName, chatMessages, chatMessages2, chatMessages3} = useSelector(
+    ({app}) => app,
+  );
   const [message, setMessage] = useState('');
   const [tempMessages, setTempMessages] = useState(chatMessages);
 
@@ -20,6 +22,9 @@ const Chat = ({navigation: {goBack, navigate}}) => {
     }
   }, []);
 
+  const {id, fullName} = route.params;
+
+  console.log('id', id);
   //a welcome message from admin to user
   const handleWelcomeMessage = () => {
     let a = {
@@ -46,12 +51,17 @@ const Chat = ({navigation: {goBack, navigate}}) => {
   };
 
   const handleclear = () => {
-    navigate('Information');;
-  };;
+    navigate('Information');
+  };
 
   return (
     <>
-      <Header goBack={goBack} name={userName} handleclear={handleclear} />
+      <Header
+        fullName={fullName}
+        goBack={goBack}
+        name={userName}
+        handleclear={handleclear}
+      />
       <SafeAreaView style={{flex: 1}}>
         <FlatList
           inverted={true}

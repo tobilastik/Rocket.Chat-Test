@@ -13,8 +13,6 @@ const setChatMessages = (payload) => ({
   payload,
 });
 
-
-
 export default {
   setDarkMode,
   setUserName,

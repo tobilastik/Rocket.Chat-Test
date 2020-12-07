@@ -2,7 +2,6 @@ import * as React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Subheading, ActivityIndicator} from 'react-native-paper';
 
-
 const Button = ({
   title,
   labelStyle,
@@ -11,9 +10,13 @@ const Button = ({
   loading,
   loadingColor,
   disabled,
+  onPressIn,
+  onPressOut,
 }) => {
   return (
     <TouchableOpacity
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
       disabled={loading || disabled}
       onPress={onPress}
       style={[styles.root, rootStyle]}>

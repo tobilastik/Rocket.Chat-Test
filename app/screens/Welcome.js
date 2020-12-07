@@ -6,6 +6,7 @@ import {
   View,
   Switch,
   StatusBar,
+  Animated,
 } from 'react-native';
 import {Title, Caption, TextInput, Subheading} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
@@ -17,11 +18,33 @@ import {useTheme} from '@react-navigation/native';
 const Welcome = ({navigation: {navigate}}) => {
   const dispatch = useDispatch();
   const {colors} = useTheme();
-
   const [showError, setShowError] = useState(false);
   const [name, setName] = useState('tobi');
-
   const {darkMode} = useSelector(({app}) => app);
+  const animation = new Animated.Value(0);
+  const inputRange = [0, 1];
+  const outputRange = [1, 0.8];
+  const scale = animation.interpolate({inputRange, outputRange});
+
+  const onPressIn = () => {
+    Animated.spring(animation, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const onPressOut = () => {
+    Animated.spring(animation, {
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
+    if (name) {
+      dispatch(appAction.setUserName(name));
+      navigate('Chats');
+    } else {
+      setShowError(true);
+    }
+  };
 
   const toggleSwitch = () => {
     console.log(darkMode);
@@ -33,7 +56,7 @@ const Welcome = ({navigation: {navigate}}) => {
   const handleContinue = () => {
     if (name) {
       dispatch(appAction.setUserName(name));
-      navigate('Chats');;
+      navigate('Chats');
     } else {
       setShowError(true);
     }
@@ -74,11 +97,14 @@ const Welcome = ({navigation: {navigate}}) => {
         {showError && (
           <Caption style={{color: 'red'}}>Input your name to continue.</Caption>
         )}
-        <Button
-          title="Continue"
-          onPress={handleContinue}
-          rootStyle={styles.welcomeBtn}
-        />
+        <Animated.View style={[styles.button, {transform: [{scale}]}]}>
+          <Button
+            onPressIn={onPressIn}
+            onPressOut={onPressOut}
+            title="Continue"
+            rootStyle={styles.welcomeBtn}
+          />
+        </Animated.View>
       </View>
     </ScrollView>
   );

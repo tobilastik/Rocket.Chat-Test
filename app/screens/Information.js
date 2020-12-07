@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Switch, TouchableOpacity, View, Image} from 'react-native';
 import {Subheading, Card, Title, Headline, Caption} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
-import BackButton from '../components/BackButton';
 import {appAction} from '../redux/actions';
 import AsyncStorage from '@react-native-community/async-storage';
+import AppHeader from '../components/AppHeader';
 
 const Information = ({navigation: {goBack}}) => {
   const dispatch = useDispatch();
@@ -25,13 +25,7 @@ const Information = ({navigation: {goBack}}) => {
 
   return (
     <View>
-      <View style={styles.header}>
-        <BackButton goBack={goBack} />
-        <View style={styles.title}>
-          <Title>Conversation Info</Title>
-        </View>
-      </View>
-
+      <AppHeader goBack={goBack} title="Converstaion Info" />
       <View style={styles.profileDetails}>
         <Image
           style={styles.profileImage}
