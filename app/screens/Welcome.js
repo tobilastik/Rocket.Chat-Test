@@ -14,12 +14,14 @@ import {appAction} from '../redux/actions';
 import Button from '../components/Button';
 import {useTheme} from '@react-navigation/native';
 
-const Welcome = ({navigation: {navigate}}) => {
-  const dispatch = useDispatch();
+const Welcome = ({navigation}) => {
+  // const dispatch = useDispatch();
   const {colors} = useTheme();
   const [showError, setShowError] = useState(false);
   const [name, setName] = useState('tobi');
-  const {darkMode} = useSelector(({app}) => app);
+  const [testID, setTestId] = useState('adder');
+
+  // const {darkMode} = useSelector(({app}) => app);
   const animation = new Animated.Value(0);
   const inputRange = [0, 1];
   const outputRange = [1, 0.8];
@@ -32,23 +34,23 @@ const Welcome = ({navigation: {navigate}}) => {
     }).start();
   };
 
-  const onPressOut = () => {
-    Animated.spring(animation, {
-      toValue: 0,
-      useNativeDriver: true,
-    }).start();
-    if (name) {
-      dispatch(appAction.setUserName(name));
-      navigate('Chats');
-    } else {
-      setShowError(true);
-    }
-  };
+  // const onPressOut = () => {
+  //   Animated.spring(animation, {
+  //     toValue: 0,
+  //     useNativeDriver: true,
+  //   }).start();
+  //   if (name) {
+  //     dispatch(appAction.setUserName(name));
+  //     navigation.navigate('Chats');
+  //   } else {
+  //     setShowError(true);
+  //   }
+  // };
 
   return (
     <ScrollView>
       <StatusBar
-        barStyle={darkMode ? 'light-content' : 'dark-content'}
+        // barStyle={darkMode ? 'light-content' : 'dark-content'}
         backgroundColor={colors.background}
       />
 
@@ -62,6 +64,7 @@ const Welcome = ({navigation: {navigate}}) => {
           <Caption>Enter your name below to get started</Caption>
         </View>
         <TextInput
+          testID={`${testID}-input`}
           error={showError}
           placeholder="Name"
           style={styles.textInput}
@@ -73,8 +76,9 @@ const Welcome = ({navigation: {navigate}}) => {
         )}
         <Animated.View style={[styles.button, {transform: [{scale}]}]}>
           <Button
-            onPressIn={onPressIn}
-            onPressOut={onPressOut}
+            testID="continue"
+            // onPressIn={onPressIn}
+            // onPressOut={onPressOut}
             title="Continue"
             rootStyle={styles.welcomeBtn}
           />

@@ -12,9 +12,11 @@ const Button = ({
   disabled,
   onPressIn,
   onPressOut,
+  testID,
 }) => {
   return (
     <TouchableOpacity
+      testID={testID}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
       disabled={loading || disabled}
