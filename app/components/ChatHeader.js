@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Title, Caption} from 'react-native-paper';
 import BackButton from './BackButton';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useTheme} from '@react-navigation/native';
 
-const Header = ({goBack, handleclear, fullName}) => {
+const ChatHeader = ({goBack, handleInfo, fullName}) => {
   const {colors} = useTheme();
 
   return (
@@ -17,7 +17,7 @@ const Header = ({goBack, handleclear, fullName}) => {
           <Caption>Hi there! I'm using Rocket.Chat!</Caption>
         </View>
         <View style={styles.iconsView}>
-          <TouchableOpacity onPress={handleclear}>
+          <TouchableOpacity onPress={handleInfo}>
             <MaterialIcons
               name="info-outline"
               size={30}
@@ -30,7 +30,7 @@ const Header = ({goBack, handleclear, fullName}) => {
   );
 };
 
-export default Header;
+export default ChatHeader;
 
 const styles = StyleSheet.create({
   rootStyle: {

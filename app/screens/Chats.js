@@ -16,7 +16,7 @@ const chats = [
     id: '123',
     avatar: require('../assets/chat.png'),
     fullName: 'Gina',
-    message: 'Eh! The house is part of the Residence',
+    message: 'Hello, Good Morning!',
   },
   {
     id: '321',
@@ -28,13 +28,12 @@ const chats = [
     id: '132',
     avatar: require('../assets/chat.png'),
     fullName: 'Anna',
-    message: 'Eh! The house is part of the Residence',
+    message: 'This is a dummy data by the way.',
   },
 ];
 
 const Chats = ({navigation: {goBack, navigate}}) => {
   const [searchQuery, setSearchQuery] = useState('');
-
   const [listOfFilteredChats, setListOfFilteredChats] = useState('');
 
   const onChangeSearch = (query) => {

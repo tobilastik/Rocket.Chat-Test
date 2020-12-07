@@ -7,9 +7,6 @@ const Button = ({
   labelStyle,
   rootStyle,
   onPress,
-  loading,
-  loadingColor,
-  disabled,
   onPressIn,
   onPressOut,
   testID,
@@ -19,27 +16,11 @@ const Button = ({
       testID={testID}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
-      disabled={loading || disabled}
       onPress={onPress}
       style={[styles.root, rootStyle]}>
-      {loading && (
-        <View style={styles.preloader}>
-          <ActivityIndicator
-            size="small"
-            animating={true}
-            color={loadingColor}
-          />
-        </View>
-      )}
       <Subheading style={[styles.label, labelStyle]}>{title}</Subheading>
     </TouchableOpacity>
   );
-};
-
-Button.defaultProps = {
-  loadingColor: 'white',
-  loading: false,
-  disabled: false,
 };
 
 export default Button;

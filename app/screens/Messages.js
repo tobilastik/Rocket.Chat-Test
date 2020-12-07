@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {FlatList, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import Header from '../components/ChatHeader';
+import ChatHeader from '../components/ChatHeader';
 import Footer from '../components/Footer';
 import {appAction} from '../redux/actions';
 import ChatMessages from '../components/ChatMessages';
@@ -22,9 +22,8 @@ const Chat = ({navigation: {goBack, navigate}, route}) => {
     }
   }, []);
 
-  const {id, fullName} = route.params;
+  const {fullName} = route.params;
 
-  console.log('id', id);
   //a welcome message from admin to user
   const handleWelcomeMessage = () => {
     let a = {
@@ -38,29 +37,29 @@ const Chat = ({navigation: {goBack, navigate}, route}) => {
   };
 
   const send = async () => {
-    let a = {
+    let newMessage = {
       id: (Math.random() * 10).toString(),
       message: message,
       timeStamp: Date.now(),
     };
-    tempMessages.unshift(a);
+    tempMessages.unshift(newMessage);
     console.log('ok', tempMessages);
     dispatch(appAction.setChatMessages(tempMessages));
     setMessage('');
     console.log('mess', chatMessages);
   };
 
-  const handleclear = () => {
+  const handleInfo = () => {
     navigate('Information');
   };
 
   return (
     <>
-      <Header
+      <ChatHeader
         fullName={fullName}
         goBack={goBack}
         name={userName}
-        handleclear={handleclear}
+        handleInfo={handleInfo}
       />
       <SafeAreaView style={{flex: 1}}>
         <FlatList

@@ -15,8 +15,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import {appAction} from './redux/actions';
 
-// import FeedBack from './components/Feedback';
-
 const StartUp = ({navigation}) => {
   const darkMode = useSelector(({app: {darkMode}}) => darkMode);
   const dispatch = useDispatch();
@@ -30,7 +28,6 @@ const StartUp = ({navigation}) => {
       background: 'whitesmoke',
       text: 'black',
       primary: '#F4445C',
-      secondary: '#5C5E63',
     },
   };
 
@@ -43,7 +40,6 @@ const StartUp = ({navigation}) => {
       background: '#121212',
       text: 'white',
       primary: '#F4445C',
-      secondary: '#262D31',
     },
   };
 
@@ -62,7 +58,6 @@ const StartUp = ({navigation}) => {
     } else if (darkModeStatus == 'false') {
       dispatch(appAction.setDarkMode(true));
     }
-    console.log('ssh', darkModeStatus);
   };
 
   return (
@@ -75,4 +70,3 @@ const StartUp = ({navigation}) => {
 };
 
 export default StartUp;
-
