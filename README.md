@@ -1,5 +1,7 @@
 # Rocket.Chat-Test
 
+<b>Please note that this app has only been tested on an android device.</b>
+
 <b>Libraries used</b>
 
 React Native
